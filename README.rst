@@ -9,7 +9,7 @@ This module is provided to you by Camptocamp_.
 ------------
 Dependencies
 ------------
-You have to configure your puppetmaster so that exported ressources will work.
+You have to configure your puppetmaster so that exported resources will work.
 
 --------
 Examples

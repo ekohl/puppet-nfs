@@ -2,15 +2,12 @@
 #
 #
 class nfs::client::service::debian {
-	Service {
-		require => Class['nfs::client::install::debian']
-	}
- 
 	service { 'portmap':
 		ensure     => running,
 		enable     => true,
 		hasstatus  => true,
-		hasrestart => true
+		hasrestart => true,
+		require => Class['nfs::client::install::debian'],
 	}
 
 	# Only Debian has nfs-common
@@ -19,7 +16,8 @@ class nfs::client::service::debian {
 			ensure     => running,
 			enable     => true,
 			hasstatus  => true,
-			hasrestart => true
+			hasrestart => true,
+			require => Class['nfs::client::install::debian'],
 		}
 	}
 }

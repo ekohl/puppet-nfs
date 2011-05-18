@@ -11,12 +11,12 @@ class nfs::server::config {
 		group   => root,
 		mode    => 644,
 		notify  => Exec['reload-nfs-server'],
-		require => [ Class["nfs::server::install"] ]
+		require => Class['nfs::server::install'],
 	}
 	
 	exec { 'reload-nfs-server':
 		command     => '/etc/init.d/nfs-kernel-server reload',
 		refreshonly => true,
-		require     => Class['nfs::server::install']
+		require     => Class['nfs::server::install'],
 	}
 }

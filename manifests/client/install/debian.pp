@@ -3,6 +3,6 @@
 #
 class nfs::client::install::debian {
 	package { [ 'nfs-common', 'portmap' ]:
-		ensure => present
+		ensure => present,
 	}
 }

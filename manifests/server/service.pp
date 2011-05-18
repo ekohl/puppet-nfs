@@ -7,6 +7,6 @@ class nfs::server::service {
 		enable     => true,
 		hasstatus  => true,
 		hasrestart => true,
-		require    => Class['nfs::server::config']
+		require    => Class['nfs::server::config'],
 	}
 }

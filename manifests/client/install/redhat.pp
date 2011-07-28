@@ -2,10 +2,6 @@
 #
 #
 class nfs::client::install::redhat {
-	package { 'nfs-utils':
-		ensure => present,
-	}
-
 	if $lsbmajdistrelease == 6 {
 		package { 'rpcbind':
       ensure => present,

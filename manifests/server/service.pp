@@ -2,11 +2,9 @@
 #
 #
 class nfs::server::service {
-	service { 'nfs-kernel-server':
-		ensure     => running,
-		enable     => true,
-		hasstatus  => true,
-		hasrestart => true,
-		require    => Class['nfs::server::config'],
+	case $operatingsystem {
+		/(?i)(Debian|Ubuntu)/:  { include nfs::server::service::debian }
+		/(?i)(RedHat|CentOS)/:  { include nfs::server::service::redhat }
+		default:                { notice "Unsupported operatingsystem ${operatingsystem} in 'nfs' module" }
 	}
 }

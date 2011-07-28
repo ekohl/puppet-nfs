@@ -2,7 +2,9 @@
 #
 #
 class nfs::server::install {
-	package { 'nfs-kernel-server':
-		ensure => present,
+	case $operatingsystem {
+		/(?i)(Debian|Ubuntu)/:  { include nfs::server::install::debian }
+		/(?i)(RedHat|CentOS)/:  { } # Handled by the common package
+		default:                { notice "Unsupported operatingsystem ${operatingsystem} in 'nfs' module" }
 	}
 }

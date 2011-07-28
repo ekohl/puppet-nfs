@@ -2,6 +2,12 @@
 #
 #
 class nfs::server::config {
+	case $operatingsystem {
+		/(?i)(Debian|Ubuntu)/:  { include nfs::server::config::debian }
+		/(?i)(RedHat|CentOS)/:  { include nfs::server::config::redhat }
+		default:                { notice "Unsupported operatingsystem ${operatingsystem} in 'nfs' module" }
+	}
+
 	# Setup concat module
 	include concat::setup
 	
@@ -14,9 +20,4 @@ class nfs::server::config {
 		require => Class['nfs::server::install'],
 	}
 	
-	exec { 'reload-nfs-server':
-		command     => '/etc/init.d/nfs-kernel-server reload',
-		refreshonly => true,
-		require     => Class['nfs::server::install'],
-	}
 }

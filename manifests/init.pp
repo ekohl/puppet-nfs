@@ -15,4 +15,5 @@
 #
 class nfs {
 	require nfs::params
+	require nfs::common
 }
